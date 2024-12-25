@@ -11,6 +11,7 @@ import { MentorContext } from "../../Mentorprovider";
 import { Link, useNavigate } from "react-router-dom";
 import mentorAnimation from "../assets/mentor.json";
 import Lottie from "lottie-react";
+import axios from "axios";
 
 const Signup = () => {
     const { user, createUser, updateProfileData } = useContext(MentorContext);
@@ -27,29 +28,45 @@ const Signup = () => {
 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,30}$/;
 
-        if (passwordRegex.test(newentry.password)) {
-            createUser(newentry.email, newentry.password)
-                .then((res) => {
-                    const profile = { displayName: initialdata.name, photoURL: initialdata.url };
-                    updateProfileData(profile)
-                        .then(() => {
-                            console.log("Profile updated");
-                        })
-                        .catch((error) => {
-                            console.log("Error updating user profile:", error);
-                        });
-
-                    console.log(res.user);
-                    e.target.reset();
-                    nav("/");
-                })
-                .catch((err) => {
-                    setError(err.message); // Set error message in state
-                    console.log(err);
-                });
-        } else {
-            setError("Password should contain uppercase, lowercase, a number, and a special character.");
-            e.target.reset();
+        if(user){
+            setError('One user is logged in already.if u want to login/signin then logout first')
+            e.target.reset()
+        }
+        else{
+            if (passwordRegex.test(newentry.password)) {
+                createUser(newentry.email, newentry.password)
+                    .then((res) => {
+                        const profile = { displayName: initialdata.name, photoURL: initialdata.url };
+                        updateProfileData(profile)
+                            .then(() => {
+                                console.log("Profile updated");
+                            })
+                            .catch((error) => {
+                                console.log("Error updating user profile:", error);
+                            });
+                            
+                            const { displayName, email, photoURL } = {
+                                displayName: profile.displayName,
+                                email: res.user.email,
+                                photoURL: profile.photoURL,
+                            };
+            
+                            const userObject = { displayName, email, photoURL };
+                            axios.post('http://localhost:5000/users',userObject)
+                            .then(resinfo=>{console.log(resinfo.data)})
+                            .catch(error=>console.log(error))
+                    
+                        e.target.reset();
+                        nav("/");
+                    })
+                    .catch((err) => {
+                        setError(err.message); // Set error message in state
+                        console.log(err);
+                    });
+            } else {
+                setError("Password should contain uppercase, lowercase, a number, and a special character.");
+                e.target.reset();
+            }
         }
     };
 

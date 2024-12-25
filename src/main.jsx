@@ -10,6 +10,8 @@ import Signup from "./UserDocument/Signup";
 import Signin from "./UserDocument/Signin";
 import Mentorprovider from '../Mentorprovider';
 import Home from './Homepage/home';
+import ADDtutor from './Tutorinfor/ADDtutor';
+import FindTutors from './Tutorinfor/FindTutors';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:<Home></Home>
+      },
+      {
+        path:"/addtutor",
+        element:<ADDtutor></ADDtutor>
+      },
+      {
+        path:"/find-tutors",
+        element:<FindTutors></FindTutors>
       },
       {
         path:"/Login",

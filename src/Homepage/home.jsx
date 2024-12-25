@@ -12,6 +12,9 @@ const Home = () => {
                 <div>
                     <Counup></Counup>
                 </div>
+                <div>
+                    language
+                </div>
             
         </div>
     );

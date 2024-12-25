@@ -29,7 +29,7 @@ const NavList = () => {
                 <Link to="/find-tutors" className="text-blue-gray-600 hover:text-blue-500">Find Tutors</Link>
             </ListItem>
             <ListItem className="flex items-center gap-2 py-2 pr-4">
-                <Link to="/add-tutorials" className="text-blue-gray-600 hover:text-blue-500">Add Tutorials</Link>
+                <Link to="/addtutor" className="text-blue-gray-600 hover:text-blue-500">Add Tutorials</Link>
             </ListItem>
             <ListItem className="flex items-center gap-2 py-2 pr-4">
                 <Link to="/my-booked-tutors" className="text-blue-gray-600 hover:text-blue-500">My Booked Tutors</Link>
