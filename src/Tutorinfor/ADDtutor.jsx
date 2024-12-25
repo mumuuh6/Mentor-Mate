@@ -68,6 +68,20 @@ const ADDtutor = () => {
                     <option value="Turkish">Turkish</option>
                     
                 </select>
+                {/* Teacher Specialty Dropdown */}
+                <label className="block mb-2 text-sm font-medium text-gray-600">Teacher Type</label>
+                <select
+                    name="Type"
+                    className="w-full p-3 border border-gray-300 rounded-lg mb-4"
+                    required
+                >
+                    <option value="">Select </option>
+                    <option value="Super tutor">Super tutor</option>
+                    <option value="Good Tutor">Good Tutor</option>
+                    <option value="New Tutor">New Tutor</option>
+
+                    
+                </select>
 
                 {/* Price */}
                 <label className="block mb-2 text-sm font-medium text-gray-600">Price</label>

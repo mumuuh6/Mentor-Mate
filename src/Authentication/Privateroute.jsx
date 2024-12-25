@@ -1,9 +1,11 @@
 import { Navigate } from "react-router-dom";
-import { mentorcontext } from "../../Mentorprovider";
-import { Spinner } from "@material-tailwind/react";
 
-const Privateroute = () => {
-    const { user, loader } = useContext(mentorcontext)
+import { Spinner } from "@material-tailwind/react";
+import { MentorContext } from "../../Mentorprovider";
+import { useContext } from "react";
+
+const Privateroute = ({children}) => {
+    const { user, loader } = useContext(MentorContext)
     if (user) {
         return children;
     }

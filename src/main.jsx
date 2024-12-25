@@ -12,6 +12,8 @@ import Mentorprovider from '../Mentorprovider';
 import Home from './Homepage/home';
 import ADDtutor from './Tutorinfor/ADDtutor';
 import FindTutors from './Tutorinfor/FindTutors';
+import TutorDetails from './Tutorinfor/TutorDetails';
+import Privateroute from './Authentication/Privateroute';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +30,11 @@ const router = createBrowserRouter([
       {
         path:"/addtutor",
         element:<ADDtutor></ADDtutor>
+      },
+      {
+        path:"/tutor/:id",
+        element:<Privateroute><TutorDetails></TutorDetails></Privateroute>,
+        loader:({params})=>fetch(`http://localhost:5000/tutor/${params.id}`)
       },
       {
         path:"/find-tutors",
