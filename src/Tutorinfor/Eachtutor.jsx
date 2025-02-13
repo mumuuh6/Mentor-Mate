@@ -45,8 +45,8 @@ const Eachtutor = (tuition) => {
                             <h3>star:{review}</h3>
                             <h3>BDT {price}</h3>
                         </div>
-                        <div>
-                            <Link to={`/tutor/${_id}`} className="p-3 border-2 rounded-lg bg-purple-500 text-black text-md font-bold">Book trial lesson</Link>
+                        <div className="">
+                            <Link to={`/tutor/${_id}`} className=" p-3 border-2 rounded-lg bg-purple-500 text-black text-md font-bold">Book trial</Link>
                         </div>
 
                     </div>
