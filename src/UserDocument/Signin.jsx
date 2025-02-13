@@ -16,7 +16,17 @@ const Signin = () => {
     const nav = useNavigate();
     const { user, loginUser, googleSignIn } = useContext(MentorContext);
     const [error, setError] = useState(''); // State for error message
-
+    
+    const googlelogin=()=>{
+        googleSignIn()
+        .then(res=>
+            nav('/'))
+        .catch((error)=>{
+            //setloader(false)
+            
+            console.log('problemmmmm',error)
+        })
+    }
     const handlelogin = (e) => {
         e.preventDefault();
         const formdata = new FormData(e.target);
@@ -45,7 +55,7 @@ const Signin = () => {
     };
 
     return (
-        <div className="flex justify-between">
+        <div className="max-w-7xl mx-auto  mt-24 lg:mt-28 flex justify-between flex-col lg:flex-row  ">
             <div>
                 <Card color="transparent" shadow={false} className="px-24 py-10 flex items-center shadow-xl">
                     <Typography variant="h4" color="blue-gray">
@@ -113,7 +123,7 @@ const Signin = () => {
                         )}
                     </form>
                     
-                    <Button className="mt-6 flex items-center justify-center" fullWidth type="submit">
+                    <Button onClick={googlelogin} className="mt-6 flex items-center justify-center" fullWidth type="submit">
                             <FcGoogle className="size-1/12"></FcGoogle>
                     </Button>
                     

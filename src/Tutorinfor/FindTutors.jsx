@@ -3,16 +3,38 @@ import { useEffect, useState } from "react";
 import Eachtutor from "./Eachtutor";
 
 const FindTutors = () => {
-    const [tutor,settutor]=useState([]);
-    useEffect(()=>{
-        axios.get('http://localhost:5000/tutor')
-        .then(data=>{settutor(data.data)})
-        .catch(err=>console.log(err))
-    },[])
+    const [tutor, setTutor] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    const [error, setError] = useState('');
+    
+    useEffect(() => {
+        axios.get('https://mentor-mate-server-side.vercel.app/tutor')
+            .then(data => { setTutor(data.data) })
+            .catch(err => setError('Error fetching data.'));
+    }, []);
+    
+    // Filter tutors based on the search text matching the language
+    const filteredTutors = tutor.filter(tuition => 
+        tuition.language.toLowerCase().includes(searchText.toLowerCase())
+    );
+
     return (
-        <div className="grid justify-center items-center gap-6">
+        <div className="max-w-7xl mx-auto p-4 grid items-center justify-center gap-6 mt-24 lg:mt-28">
+            <div className="w-full mb-6  px-4 flex items-center justify-center">
+                <input
+                    type="text"
+                    placeholder="Search by language"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg"
+                />
+            </div>
             {
-                tutor.map(tuition=><Eachtutor key={tuition._id} tuition={tuition}></Eachtutor>)
+                filteredTutors.length > 0 ? (
+                    filteredTutors.map(tuition => <Eachtutor key={tuition._id} tuition={tuition} />)
+                ) : (
+                    <p>No tutors found for this language!</p>
+                )
             }
         </div>
     );

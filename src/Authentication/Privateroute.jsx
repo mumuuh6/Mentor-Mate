@@ -10,14 +10,14 @@ const Privateroute = ({children}) => {
         return children;
     }
     if (loader){
-        return <div className="flex gap-8">
+        return <div className="flex justify-center items-center gap-8">
       <Spinner color="blue" className="h-12 w-12" />
       
     </div>
     }
     return (
         <div>
-            <Navigate to='/'></Navigate>
+            <Navigate to='/Login'></Navigate>
         </div>
     );
 };

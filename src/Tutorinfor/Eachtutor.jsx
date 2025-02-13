@@ -15,12 +15,12 @@ const Eachtutor = (tuition) => {
     const { language, Type, name, price, review, url, _id } = tuition.tuition;
     
     return (
-        <div>
-            <Card className="w-full max-w-[48rem] h-48 flex-row ">
+        <div className="max-w-sm md:max-w-none">
+            <Card className="w-full max-w-[32rem] h-auto flex-col items-center justify-center lg:flex-row md:flex-row md:max-w-[44rem] lg:max-w-[48rem] ">
                 <CardHeader
                     shadow={false}
                     floated={false}
-                    className="m-0 w-2/5 shrink-0 rounded-r-none"
+                    className="m-0 w-2/5 shrink-0 rounded-r-none "
                 >
                     <img
                         src={url}
@@ -28,7 +28,7 @@ const Eachtutor = (tuition) => {
                         className="h-full w-full object-fit"
                     />
                 </CardHeader>
-                <CardBody className="flex justify-between items-center text-start w-screen">
+                <CardBody className="flex flex-row justify-center text-start w-screen md:flex-row lg:flex-row">
                     <div className="flex flex-col ">
                         <div className="flex items-center gap-1">
                             <h3>{name}</h3>
@@ -40,9 +40,9 @@ const Eachtutor = (tuition) => {
                         <div className="flex items-center"><p><FaAmericanSignLanguageInterpreting className="text-black"></FaAmericanSignLanguageInterpreting></p><p>Speaks {language} profeciently</p></div>
 
                     </div>
-                    <div>
+                    <div className="flex flex-col ">
                         <div className="mb-4">
-                            <h3>star <p>{review}</p></h3>
+                            <h3>star:{review}</h3>
                             <h3>BDT {price}</h3>
                         </div>
                         <div>

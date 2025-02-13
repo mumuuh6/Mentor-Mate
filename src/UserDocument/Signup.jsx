@@ -52,7 +52,7 @@ const Signup = () => {
                             };
             
                             const userObject = { displayName, email, photoURL };
-                            axios.post('http://localhost:5000/users',userObject)
+                            axios.post('https://mentor-mate-server-side.vercel.app/users',userObject)
                             .then(resinfo=>{console.log(resinfo.data)})
                             .catch(error=>console.log(error))
                     
@@ -71,8 +71,8 @@ const Signup = () => {
     };
 
     return (
-        <div className="flex justify-between">
-            <div className="px-24 py-10">
+        <div className="max-w-7xl mx-auto  mt-24 lg:mt-28 flex justify-between flex-col lg:flex-row  ">
+            <div className="">
                 <Card color="transparent" shadow={false} className="shadow-2xl px-24 py-10 flex items-center">
                     <Typography variant="h4" color="blue-gray">
                         Sign Up

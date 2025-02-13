@@ -20,23 +20,46 @@ import { Link } from "react-router-dom";
 import { MentorContext } from "../../Mentorprovider";
 
 const NavList = () => {
+    const { isDarkMode, setIsDarkMode } = useContext(MentorContext)
+    const handletheme = () => {
+
+        setIsDarkMode(!isDarkMode)
+    }
+    const { user } = useContext(MentorContext)
     return (
-        <List className="mt-4 mb-6 lg:mt-0 lg:mb-0 lg:flex-row items-center lg:p-1">
+        <List className="mb-6 lg:mt-0 lg:mb-0 lg:flex-row  lg:p-1">
             <ListItem className="flex items-center gap-2 py-2 pr-4">
                 <Link to="/" className="text-blue-gray-600 hover:text-blue-500">Home</Link>
             </ListItem>
             <ListItem className="flex items-center gap-2 py-2 pr-4">
                 <Link to="/find-tutors" className="text-blue-gray-600 hover:text-blue-500">Find Tutors</Link>
             </ListItem>
+
+            {
+                user && <div className=" flex flex-col lg:flex-row">
+                    <ListItem className="flex items-center gap-2 py-2 pr-4">
+                        <Link to="/addtutor" className="text-blue-gray-600 hover:text-blue-500">Add Tutorials</Link>
+                    </ListItem>
+                    <ListItem className="flex items-center gap-2 py-2 pr-4">
+                        <Link to="/my-booked-tutors" className="text-blue-gray-600 hover:text-blue-500">My Booked Tutors</Link>
+                    </ListItem>
+                    <ListItem className="flex items-center gap-2 py-2 pr-4">
+                        <Link to="/mytutorial" className="text-blue-gray-600 hover:text-blue-500">My Tutorials</Link>
+
+                    </ListItem>
+                </div>
+            }
+
+
             <ListItem className="flex items-center gap-2 py-2 pr-4">
-                <Link to="/addtutor" className="text-blue-gray-600 hover:text-blue-500">Add Tutorials</Link>
+            <Link to="/blogs" className="text-blue-gray-600 hover:text-blue-500">Blogs</Link>
+
             </ListItem>
             <ListItem className="flex items-center gap-2 py-2 pr-4">
-                <Link to="/my-booked-tutors" className="text-blue-gray-600 hover:text-blue-500">My Booked Tutors</Link>
+                <button onClick={handletheme}>Theme</button>
+
             </ListItem>
-            <ListItem className="flex items-center gap-2 py-2 pr-4">
-                <Link to="/contact-us" className="text-blue-gray-600 hover:text-blue-500">Contact Us</Link>
-            </ListItem>
+
         </List>
     );
 };
@@ -84,8 +107,8 @@ const Navbar = () => {
     }, []);
 
     return (
-        <MTNavbar className="mx-auto max-w-screen-xl px-4 py-2">
-            <div className="flex items-center justify-between">
+        <MTNavbar className="bg-purple-50 max-w-7xl mx-auto px-4 py-2 fixed top-0 z-50 ">
+            <div className="flex justify-evenly items-center">
                 <Typography as="a" href="#" variant="h6" className="mr-4 text-black flex justify-center items-center gap-3">
                     <img
                         src="https://i.ibb.co/2jnKzYW/DALL-E-2024-12-24-00-11-14-A-fun-and-attractive-cartoon-style-illustration-of-two-hands-holding-the.webp"
@@ -113,6 +136,7 @@ const Navbar = () => {
                 <NavList />
                 {account}
             </Collapse>
+
         </MTNavbar>
     );
 };

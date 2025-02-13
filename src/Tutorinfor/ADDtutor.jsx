@@ -4,18 +4,28 @@ import axios from 'axios';
 
 const ADDtutor = () => {
     const {user}=useContext(MentorContext)
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission
         const formdata = new FormData(e.target); // Create FormData from form
         const initialdata = Object.fromEntries(formdata.entries()); // Convert to object
+    
         console.log(initialdata);
-        
-        axios.post('http://localhost:5000/tutor',initialdata)
-        .then(res=>{console.log(res.data)})
-        .catch(err=>{console.log(err)})
-    }
+    
+        // Ensure review is treated as an integer
+        const intreview = parseInt(initialdata.review, 10); // Parse as integer
+        const { review, ...newInitialData } = initialdata; // Remove review from initial data
+        const permanentData = { ...newInitialData, review: intreview }; // Add the parsed integer value
+    
+        console.log(permanentData);
+    
+        // Send the data to the backend
+        axios.post('https://mentor-mate-server-side.vercel.app/tutor', permanentData)
+            .then(res => { console.log(res.data); })
+            .catch(err => { console.log(err); });
+    };
+    
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 py-10">
+        <div className="flex justify-center items-center min-h-screen  mt-24 px-4 lg:mt-28 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 py-10">
             <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
                 <h2 className="text-xl font-bold mb-4 text-center text-blue-700">Tutor Registration Form</h2>
 
