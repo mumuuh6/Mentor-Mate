@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { MentorContext } from "../../Mentorprovider";
-import { Card, CardHeader, CardBody } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, Spinner } from "@material-tailwind/react";
 import { FaAmericanSignLanguageInterpreting } from "react-icons/fa";
 import { PiStudent } from "react-icons/pi";
 import { MdOutlineVerified, MdOutlinePlayLesson } from "react-icons/md";
@@ -14,7 +14,15 @@ const Mybookedtutor = () => {
     const [bookeddata, setbookeddata] = useState([]);
     const [reviewupdated, setreviewupdated] = useState(false);
     const [error, setError] = useState('');  // Error state
+    const [loading, setLoading] = useState(true); // New state for loading
 
+    // Show loading spinner for first 3 seconds
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, []);
     useEffect(() => {
         axios
             .get(`https://mentor-mate-server-side.vercel.app/mybookedinfo?email=${emailofbooking}`, { withCredentials: true })
@@ -49,6 +57,13 @@ const Mybookedtutor = () => {
             setbookeddata(tutorid);
         }
     }, [bookedemail, bookedtutor]);
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center gap-8 h-screen w-full">
+                <Spinner color="blue" className="h-12 w-12" />
+            </div>
+        );
+    }
 
     const handlereview = (id, review) => {
         axios

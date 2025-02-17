@@ -10,6 +10,7 @@ import {
     Input,
     Typography,
     CardFooter,
+    Spinner,
 } from "@material-tailwind/react";
 import { FaAmericanSignLanguageInterpreting } from "react-icons/fa";
 import { PiStudent } from "react-icons/pi";
@@ -23,7 +24,15 @@ const Mytutorials = () => {
     const [open, setOpen] = useState(false); // State for controlling dialog visibility
     const [editData, setEditData] = useState(null); // State to store data for editing
     const [errorMessage, setErrorMessage] = useState(""); // State to store error messages
+    const [loading, setLoading] = useState(true); // New state for loading
 
+    // Show loading spinner for first 3 seconds
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, []);
     // Fetch tutorials whenever the `deleted` state changes
     useEffect(() => {
         axios
@@ -90,7 +99,13 @@ const Mytutorials = () => {
                 setErrorMessage("Failed to update the tutorial. Please try again."); // Set error message
             });
     };
-
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center gap-8 h-screen w-full">
+                <Spinner color="blue" className="h-12 w-12" />
+            </div>
+        );
+    }
     return (
         <div className=" flex flex-col gap-4 justify-center items-center py-4  mt-24 lg:mt-28">
             {errorMessage && (

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { MentorContext } from '../../Mentorprovider';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const ADDtutor = () => {
     const {user}=useContext(MentorContext)
@@ -13,15 +14,22 @@ const ADDtutor = () => {
     
         // Ensure review is treated as an integer
         const intreview = parseInt(initialdata.review, 10); // Parse as integer
-        const { review, ...newInitialData } = initialdata; // Remove review from initial data
-        const permanentData = { ...newInitialData, review: intreview }; // Add the parsed integer value
+        const intprice = parseInt(initialdata.price, 10); // Parse as integer
+        const { review,price, ...newInitialData } = initialdata; // Remove review from initial data
+        const permanentData = { ...newInitialData, review: intreview,price:intprice}; // Add the parsed integer value
     
         console.log(permanentData);
     
         // Send the data to the backend
         axios.post('https://mentor-mate-server-side.vercel.app/tutor', permanentData)
-            .then(res => { console.log(res.data); })
+            .then(res => { 
+                Swal.fire({
+                title: "Good job!",
+                text: "Your subscription as teacher is done!",
+                icon: "success"
+              }); })
             .catch(err => { console.log(err); });
+            e.target.reset()
     };
     
     return (

@@ -4,14 +4,15 @@ import Eachtutor from "./Eachtutor";
 
 const FindTutors = () => {
     const [tutor, setTutor] = useState([]);
+    const [sort, setsort] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [error, setError] = useState('');
-    
     useEffect(() => {
-        axios.get('https://mentor-mate-server-side.vercel.app/tutor')
-            .then(data => { setTutor(data.data) })
+        axios.get(`http://localhost:5000/tutor?sort=${sort}`)
+            .then(data => { 
+                setTutor(data.data) })
             .catch(err => setError('Error fetching data.'));
-    }, []);
+    }, [sort]);
     
     // Filter tutors based on the search text matching the language
     const filteredTutors = tutor.filter(tuition => 
@@ -20,6 +21,7 @@ const FindTutors = () => {
 
     return (
         <div className="max-w-7xl mx-auto p-4 grid items-center justify-center gap-6 mt-24 lg:mt-28">
+            <div className="flex justify-between">
             <div className="w-full mb-6  px-4 flex items-center justify-center">
                 <input
                     type="text"
@@ -28,6 +30,12 @@ const FindTutors = () => {
                     onChange={(e) => setSearchText(e.target.value)}
                     className="w-full p-3 border border-gray-300 rounded-lg"
                 />
+            </div>
+            <div className="w-full mb-6  px-4 flex gap-1 items-center justify-center">
+                
+                <button onClick={()=>setsort(!sort)} className="bg-purple-400 p-3 rounded-lg">Sort by price</button>
+            </div>
+            
             </div>
             {
                 filteredTutors.length > 0 ? (

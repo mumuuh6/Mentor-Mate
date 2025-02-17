@@ -55,10 +55,10 @@ const NavList = () => {
             <Link to="/blogs" className="text-blue-gray-600 hover:text-blue-500">Blogs</Link>
 
             </ListItem>
-            <ListItem className="flex items-center gap-2 py-2 pr-4">
+            {/* <ListItem className="flex items-center gap-2 py-2 pr-4">
                 <button onClick={handletheme}>Theme</button>
 
-            </ListItem>
+            </ListItem> */}
 
         </List>
     );
