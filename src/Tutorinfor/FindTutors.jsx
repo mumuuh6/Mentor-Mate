@@ -8,7 +8,7 @@ const FindTutors = () => {
     const [searchText, setSearchText] = useState('');
     const [error, setError] = useState('');
     useEffect(() => {
-        axios.get(`http://localhost:5000/tutor?sort=${sort}`)
+        axios.get(`https://mentor-mate-server-side.vercel.app/tutor?sort=${sort}`)
             .then(data => { 
                 setTutor(data.data) })
             .catch(err => setError('Error fetching data.'));
