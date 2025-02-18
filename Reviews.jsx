@@ -40,19 +40,19 @@ const reviews = [
 
 const Reviews = () => {
     return (
-        <div className="p-6 bg-purple-100 font-sans max-w-5xl mx-auto">
-            <Fade direction='down' duration={1000}><h1 className="text-3xl text-center text-gray-700 mb-8">User Reviews</h1></Fade>
-            <div className="bg-purple-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="mt-6 font-sans max-w-7xl mx-auto">
+            <Fade direction='down' duration={1000}><h1 className="text-3xl text-center  mb-8">User Reviews</h1></Fade>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {reviews.map(review => (
                     
-                        <div key={review.id} className="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:translate-y-2 ">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4">{review.user}</h3>
+                        <div key={review.id} className=" p-6 rounded-lg shadow-lg transition-transform transform hover:translate-y-2 flex flex-col items-center ">
+                        <h3 className="text-xl font-semibold  mb-4">{review.user}</h3>
                         <div className="flex mb-4 justify-center">
                             {[...Array(5)].map((_, index) => (
                                 <span key={index} className={`text-xl ${index < review.rating ? 'text-yellow-500' : 'text-gray-300'}`}>★</span>
                             ))}
                         </div>
-                        <Fade direction='up' duration={1000} ><p className="text-gray-600">{review.review}</p></Fade>
+                        <Fade direction='up' duration={1000} ><p className="">{review.review}</p></Fade>
                     </div>
                     
                 ))}

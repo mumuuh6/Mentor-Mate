@@ -34,9 +34,7 @@ const {isDarkMode}=useContext(MentorContext)
       <Navbar></Navbar>
     </div>
       <div className='max-w-7xl mx-auto mb-10'>
-       <div className={`${isDarkMode?"bg-white":'bg-purple-50'}`}>
        <Outlet></Outlet>
-       </div>
       </div>
       <div className='max-w-7xl mx-auto mb-10'>
         <Footer></Footer>

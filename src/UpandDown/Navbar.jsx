@@ -18,6 +18,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { MentorContext } from "../../Mentorprovider";
+import { ThemeContext } from "../ThemeContext";
+import { MdBrightness4, MdBrightness7 } from "react-icons/md";
 
 const NavList = () => {
     const { isDarkMode, setIsDarkMode } = useContext(MentorContext)
@@ -74,9 +76,13 @@ const Navbar = () => {
             .then(res => console.log('success'))
             .catch(err => console.log(err))
     }
+    const { mode, toggleTheme } = useContext(ThemeContext);
     const account =
-
+    
         user ? <div className="flex gap-4">
+            <IconButton onClick={toggleTheme} color="inherit">
+    {mode === "dark" ? <MdBrightness7 /> : <MdBrightness4 />}
+  </IconButton>
             <Tippy content={user.displayName} placement="bottom">
                 <Avatar
                     src={user.photoURL}
@@ -89,6 +95,9 @@ const Navbar = () => {
                 SignOut
             </p>
         </div> : <div>
+        <IconButton onClick={toggleTheme} color="inherit">
+    {mode === "dark" ? <MdBrightness7 /> : <MdBrightness4 />}
+  </IconButton>
             <Link to="/login" className="text-gray-500 hover:bg-gray-300 rounded-3xl p-3">
                 Log In
             </Link>
@@ -107,9 +116,9 @@ const Navbar = () => {
     }, []);
 
     return (
-        <MTNavbar className="bg-purple-50 max-w-7xl mx-auto px-4 py-2 fixed top-0 z-50 ">
+        <MTNavbar className="max-w-7xl mx-auto px-4 py-2 fixed top-0 z-50 ">
             <div className="flex justify-evenly items-center">
-                <Typography as="a" href="#" variant="h6" className="mr-4 text-black flex justify-center items-center gap-3">
+                <Typography as="a" href="#" variant="h6" className="mr-4 flex justify-center items-center gap-3">
                     <img
                         src="https://i.ibb.co/2jnKzYW/DALL-E-2024-12-24-00-11-14-A-fun-and-attractive-cartoon-style-illustration-of-two-hands-holding-the.webp"
                         alt=""
@@ -125,7 +134,7 @@ const Navbar = () => {
                 </div>
                 <IconButton
                     variant="text"
-                    color="blue-gray"
+                    color=""
                     className="lg:hidden"
                     onClick={() => setOpenNav(!openNav)}
                 >

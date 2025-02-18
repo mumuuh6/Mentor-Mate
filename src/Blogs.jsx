@@ -43,18 +43,18 @@ const blogs = [
 
 const Blogs = () => {
     return (
-        <div className="blogs-container  mt-24 lg:mt-28 max-w-6xl mx-auto p-6">
+        <div className="blogs-container  mt-24 lg:mt-28 max-w-7xl mx-auto">
             <h1 className="font-bold text-3xl underline text-center mb-8 ">Our Latest Blogs</h1>
             
-            <div className="bg-purple-100 p-6 blogs-list grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+            <div className="blogs-list grid gap-6 md:grid-cols-1 lg:grid-cols-3">
                 {blogs.map(blog => (
                     <div 
                         key={blog.id} 
-                        className="blog-card bg-white shadow-lg rounded-lg border p-6 hover:shadow-xl transition duration-300"
+                        className="blog-card  shadow-lg rounded-lg border p-6 hover:shadow-xl transition duration-300"
                     >
                         <h2 className="text-xl font-semibold mb-2">{blog.title}</h2>
-                        <p className="text-sm text-gray-600 mb-4"><strong>Written by:</strong> {blog.writer}</p>
-                        <p className="text-gray-800">{blog.content}</p>
+                        <p className="text-sm  mb-4"><strong>Written by:</strong> {blog.writer}</p>
+                        <p className="">{blog.content}</p>
                     </div>
                 ))}
             </div>
