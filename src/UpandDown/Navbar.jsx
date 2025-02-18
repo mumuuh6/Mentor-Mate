@@ -124,7 +124,7 @@ const Navbar = () => {
                         alt=""
                         className="w-16"
                     />
-                    <p>MentorMat</p>
+                    <p>MentorMate</p>
                 </Typography>
                 <div className="hidden lg:block">
                     <NavList />
